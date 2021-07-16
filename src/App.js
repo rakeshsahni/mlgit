@@ -10,8 +10,7 @@ const Usestyle = makeStyles({
     alignItems : "center",
     justifyContent : "center",
     height : "100vh",
-    width : "100wh",
-    backgroundColor : "gray"
+    width : "100wh"
   }
 })
 
@@ -21,7 +20,7 @@ function App() {
   const setupCamera = () => {
     navigator.mediaDevices
       .getUserMedia({
-        video: { width: 300,height : 500},
+        video: { width: 200,height : 300},
         audio: false,
       })
       .then((stream) => {
@@ -42,11 +41,11 @@ function App() {
   const setCanvas = async (net) => {
     if (myVideo.current.readyState === 4) {
       const ctx = myCanvas.current.getContext("2d");
-      myCanvas.current.width = 300;
-      myCanvas.current.height = 500;
+      myCanvas.current.width = 200;
+      myCanvas.current.height = 300;
 
       const obj = await net.detect(myVideo.current);
-      ctx.drawImage(myVideo.current, 0, 0, 300,500);
+      ctx.drawImage(myVideo.current, 0, 0, 200,300);
 
       // to prediction
       obj.forEach((pred) => {
@@ -72,8 +71,8 @@ function App() {
       <h1>🙂🙂🙂🙂</h1>
       <video
         ref={myVideo}
-        height="500"
-        width="500"
+        width="200"
+        height="300"
         style={{ display: "none" }}
       ></video>
       <canvas ref={myCanvas}></canvas>
